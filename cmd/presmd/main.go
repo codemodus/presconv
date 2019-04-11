@@ -6,7 +6,7 @@ import (
 	"os"
 	"path"
 
-	"github.com/codemodus/presm"
+	"github.com/codemodus/presconv"
 )
 
 func main() {
@@ -35,11 +35,11 @@ func run() error {
 	}
 	defer src.Close()
 
-	p := presm.New(
-		&presm.DropPrefixed{
+	p := presconv.New(
+		&presconv.DropPrefixed{
 			Prefixes: []string{"*", "##"},
 		},
-		&presm.Markdown{},
+		&presconv.Markdown{},
 	)
 
 	return p.ParsePres(os.Stdout, src)

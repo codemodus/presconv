@@ -1,3 +1,3 @@
-module github.com/codemodus/presm
+module github.com/codemodus/presconv
 
 go 1.12

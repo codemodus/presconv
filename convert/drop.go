@@ -1,4 +1,4 @@
-package parsers
+package convert
 
 import (
 	"bufio"
@@ -12,8 +12,8 @@ type DropPrefixed struct {
 	Prefixes []string
 }
 
-// ParsePres implements the Parser interface.
-func (p *DropPrefixed) ParsePres(dst io.Writer, src io.Reader) error {
+// ConvertPres implements the presconv.Converter interface.
+func (p *DropPrefixed) ConvertPres(dst io.Writer, src io.Reader) error {
 	// TODO: add error handling
 	sc := bufio.NewScanner(src)
 

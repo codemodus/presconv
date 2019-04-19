@@ -1,4 +1,4 @@
-package parsers
+package convert
 
 import (
 	"bufio"
@@ -8,8 +8,8 @@ import (
 // Markdown ...
 type Markdown struct{}
 
-// ParsePres implements the Parser interface.
-func (p *Markdown) ParsePres(dst io.Writer, src io.Reader) error {
+// ConvertPres implements the presconv.Converter interface.
+func (p *Markdown) ConvertPres(dst io.Writer, src io.Reader) error {
 	// TODO: add error handling
 	var err error
 	sc := bufio.NewScanner(src)

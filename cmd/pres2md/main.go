@@ -7,7 +7,7 @@ import (
 	"path"
 
 	"github.com/codemodus/presconv"
-	"github.com/codemodus/presconv/parsers"
+	"github.com/codemodus/presconv/convert"
 )
 
 func main() {
@@ -37,11 +37,11 @@ func run() error {
 	defer src.Close()
 
 	p := presconv.New(
-		&parsers.DropPrefixed{
+		&convert.DropPrefixed{
 			Prefixes: []string{"*", "##"},
 		},
-		&parsers.Markdown{},
+		&convert.Markdown{},
 	)
 
-	return p.ParsePres(os.Stdout, src)
+	return p.ConvertPres(os.Stdout, src)
 }

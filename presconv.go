@@ -5,40 +5,41 @@ import (
 	"io"
 )
 
-// Parser describes types intended for processing presentation slide files.
-type Parser interface {
-	ParsePres(io.Writer, io.Reader) error
+// Converter describes types intended for processing presentation slide
+// files.
+type Converter interface {
+	ConvertPres(io.Writer, io.Reader) error
 }
 
-// PresConv manages parsers for parsing presentation slide files.
+// PresConv manages converters for parsing presentation slide files.
 type PresConv struct {
-	ps []Parser
+	cs []Converter
 }
 
 // New constructs an instance of PresConv.
-func New(ps ...Parser) *PresConv {
-	v := PresConv{
-		ps: ps,
+func New(cs ...Converter) *PresConv {
+	c := PresConv{
+		cs: cs,
 	}
 
-	return &v
+	return &c
 }
 
-// ParsePres leverages the underlying Parser queue to process presentation slide
-// files.
-func (p *PresConv) ParsePres(dst io.Writer, src io.Reader) error {
+// ConvertPres leverages the underlying converters queue to process presentation
+// slide files.
+func (c *PresConv) ConvertPres(dst io.Writer, src io.Reader) error {
 	var buf *bytes.Buffer
-	i := len(p.ps) - 1
+	i := len(c.cs) - 1
 
-	for _, cp := range p.ps[:i] {
+	for _, cc := range c.cs[:i] {
 		buf = &bytes.Buffer{}
 
-		if err := cp.ParsePres(buf, src); err != nil {
+		if err := cc.ConvertPres(buf, src); err != nil {
 			return err
 		}
 
 		src = buf
 	}
 
-	return p.ps[i].ParsePres(dst, src)
+	return c.cs[i].ConvertPres(dst, src)
 }

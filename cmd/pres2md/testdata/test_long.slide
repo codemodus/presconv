@@ -1,0 +1,70 @@
+###
+Intro To EUG Go
+Let's Jump Into It
+27 Sep 2018
+Tags: intro
+
+
+
+###
+Daved
+disjuncter@example.com
+https://github.com/daved
+
+
+
+#--
+* Go At 30,000 Feet
+
+.background https://storage.euggo.org/present/img/clouds_up_high.jpg
+
+- Carefully and fully utilize infrastructure
+- Minimize development and maintenance time
+- Encourage testing, benchmarking, and documentation
+- Simplify cross-platform development
+
+: To be clear, dev time can be slightly longer than avg, but maint is often far lower.
+: Aside from an overall lower time cost, optimization is usually less necessary.
+
+#--
+* Go At 300 Feet
+
+.background https://storage.euggo.org/present/img/largest_tree.jpg
+
+- Lightweight, low(ish)-level
+- Strongly, statically typed; Compiled w/GC
+- Object-oriented-like
+- Concurrent; Parallel
+
+: Low-level, but non-deterministic.
+: OO-like in that Go does not have type classes; Composition only, no inheritance.
+: Parallelism when resources permit; Serialized concurrency otherwise.
+
+#--
+* Go At 3 Feet
+
+.background https://storage.euggo.org/present/img/gopher_in_field.jpg
+
+.play ./hw_conc/main.go /BGN OMIT/,/END OMIT/
+
+: make channel of strings ...
+: using the colon/equals assignment operator which declares and initializes a variable
+: a concurrent goroutine is ran that sends "eugene" into the channel after sleeping
+: "hello" is printed while the goroutine is waiting at the sleep function
+: the channel is received from and the received value is printed
+
+* You're Invited!
+
+.background https://storage.euggo.org/present/img/eugene_downtown.jpg
+
+First Thursdays at 6:30pm: Topical Presentation
+Each Monday from 12:00pm - 1:00pm: Book Club
+@ RAIN / 942 Olive St. in Downtown Eugene
+
+.caption Bring a laptop if you'd like.
+
+Resources:
+[[https://golang.org/][The front door: golang.org]]
+[[https://www.meetup.com/eug-go][Go in Eugene: meetup.com/eug-go]]
+
+[[https://www.euggo.org][www.euggo.org]]

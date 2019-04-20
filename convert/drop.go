@@ -19,16 +19,8 @@ func (p *DropPrefixed) ConvertPres(dst io.Writer, src io.Reader) error {
 
 	for sc.Scan() {
 		s := sc.Text()
-		var found bool
 
-		for _, pfx := range p.Prefixes {
-			if strings.HasPrefix(s, pfx) {
-				found = true
-				break
-			}
-		}
-
-		if found {
+		if hasAnyPrefix(s, p.Prefixes) {
 			continue
 		}
 
@@ -42,4 +34,14 @@ func (p *DropPrefixed) ConvertPres(dst io.Writer, src io.Reader) error {
 	}
 
 	return sc.Err()
+}
+
+func hasAnyPrefix(s string, prefixes []string) bool {
+	for _, p := range prefixes {
+		if strings.HasPrefix(s, p) {
+			return true
+		}
+	}
+
+	return false
 }

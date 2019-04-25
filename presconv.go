@@ -11,6 +11,12 @@ type Converter interface {
 	ConvertPres(io.Writer, io.Reader) error
 }
 
+type ConverterFunc func(io.Writer, io.Reader) error
+
+func (c ConverterFunc) ConvertPres(dst io.Writer, src io.Reader) error {
+	return c(dst, src)
+}
+
 // PresConv manages converters for parsing presentation slide files.
 type PresConv struct {
 	cs []Converter

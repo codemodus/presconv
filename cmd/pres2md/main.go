@@ -38,9 +38,9 @@ func run() error {
 
 	p := presconv.New(
 		&convert.DropPrefixed{
-			Prefixes: []string{"*", "##"},
+			Prefixes: []string{"#--", "###"},
 		},
-		&convert.Markdown{},
+		convert.NewMarkdown(),
 	)
 
 	return p.ConvertPres(os.Stdout, src)
